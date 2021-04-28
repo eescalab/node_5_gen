@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
+var cors = require('cors')
 
 
 //Modulos Propios
@@ -22,26 +23,43 @@ if(process.env.NODE_ENV === 'desarrollo' ){
 
 ///////EXPRESS
 const app = express();
-//Middelware  - body json  
-//req.body.xxxxx
+//////MIDDELWARE
+
+//-Middelware req.body.xxxxx
 app.use( express.json() )
 
-//Middelware - file upload
+//-Middelware - file upload
 app.use(fileUpload({
   limits: { fileSize: 50 * 1024 * 1024 },
 }));
 
 
+app.use(cors());
+
+// app.use((req, res, next) => {
+
+//   res.setHeader('Access-Control-Allow-Origin', '*'); //que origen esta permitido -> IPs   Dominios
+//   res.setHeader('Access-Control-Allow-Methods', '*'); // que metodos de peticion http estan permitidos GET POST PUT /  DEL 
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); //que cabeceras pueden utilizarse
+
+
+//   next();
+
+// })
+
+//-Middelware 
 app.use( (req, res, next) =>{
   console.log('Hola soy retorno clase ');
   next();
 } )
 
-//ROUTES
+
+
+//////////////ROUTES
 routerV1(app);
 
 
-//HANDLER
+/////////////ANDLER
 app.use(function(err, req, res, next) {
 
 
@@ -73,7 +91,7 @@ mongoose.connect(process.env.MONGO_URL, {
 })
 
 
-app.listen(8080, ()=>{
+app.listen(process.env.PORT, ()=>{
   console.log('Servidor Ok 8080');
   
 })

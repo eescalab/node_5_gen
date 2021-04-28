@@ -43,8 +43,8 @@ function login(req,res, next) {
     // var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
     let token = jwt.sign(
       payload,
-      'claveSecreta123456789',
-      { expiresIn: 60 * 60 }
+      process.env.TOKEN_KEY,
+      { expiresIn: process.env.CADUCIDAD_TOKEN, }
     )
     
 

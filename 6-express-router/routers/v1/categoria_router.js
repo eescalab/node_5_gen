@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.get('/categoria', listar); 
 router.get('/categoria/:id', getCategoria);
-router.post('/categoria',guardar);
+router.post('/categoria', isAuth,isAdmin, guardar);
 router.delete('/categoria/:id',isAuth,isAdmin, borrar);
 router.put('/categoria/:id',isAuth,isAdmin,update);
  
