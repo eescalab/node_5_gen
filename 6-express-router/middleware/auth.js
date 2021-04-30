@@ -7,7 +7,7 @@ const isAuth = (req, res, next) =>{
   console.log('Header token:',token);
   
 
-  jwt.verify(token, 'claveSecreta123456789', (err, decoded) =>{
+  jwt.verify(token, process.env.TOKEN_KEY, (err, decoded) =>{
     if(err){
       err.statusCode = 401;
       next(err);
@@ -38,8 +38,34 @@ const isAdmin = (req, res, next) => {
 
 }
 
+const renewToken = async (req, res = response) => {
+  console.log('renewToken ----------------');
+  
+  console.log('req.usuario:', req.usuario);
+  
+  const uid = req.usuario.uid;
+  let {iat, exp,...payload} = req.usuario;
+
+
+
+  let token = jwt.sign(
+    payload,
+    process.env.TOKEN_KEY,
+    { expiresIn: process.env.CADUCIDAD_TOKEN, }
+  )
+
+
+  res.json({
+    token
+  
+  });
+
+}
+
+
 
 module.exports = {
   isAuth,
-  isAdmin
+  isAdmin,
+  renewToken
 }

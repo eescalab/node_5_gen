@@ -6,8 +6,10 @@ const express = require('express');
 const { 
   signup,
   login
+  
 } = require('../../controller/login_controller');
 
+const { isAuth, renewToken } = require('../../middleware/auth');
 
 const router = express.Router();
 
@@ -24,6 +26,13 @@ router.post(
   '/login', 
   login
 );
+
+router.get(
+  '/login/renew',
+  isAuth,
+  renewToken,
+);
+
 
 module.exports = router;
 

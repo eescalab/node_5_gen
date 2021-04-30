@@ -57,7 +57,7 @@ function login(req,res, next) {
     return res.json({
       usuario : {
         usuarioId: user._id,
-        nombre: user.nombre,
+        nombre: user.email,
         role: user.role,
       },
       token: token

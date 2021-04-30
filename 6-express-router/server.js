@@ -11,6 +11,8 @@ const routerV1 = require('./routers/v1/index');
 
 
 
+
+
 console.log(` -${process.env.NODE_ENV}- `); //produccion
 console.log(` -${__dirname}- `); //desarrollo
 
@@ -23,7 +25,17 @@ if(process.env.NODE_ENV === 'desarrollo' ){
 
 ///////EXPRESS
 const app = express();
+
+
+
 //////MIDDELWARE
+//-Definir public static
+app.use(express.static('public'));
+
+app.get('/', function (req, res) {
+  res.sendFile("/public/index.html");
+});
+
 
 //-Middelware req.body.xxxxx
 app.use( express.json() )
