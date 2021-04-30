@@ -38,6 +38,29 @@ function productoById(req, res, next, id) {
   })
 }
 
+//==========
+//	Listar Productos x Categoria
+//==========
+
+//TODO borrar
+function getxCategoria(req, res, next) {
+  console.log('req.params:', req.params);
+
+  let categoria_nombre = req.params.categoria_nombre;
+  let query = categoria_nombre !='undefined' ? { categoria_nombre } : {}
+  
+  ModelProducto.find( query ).select('-imagen')
+    .exec((err, items) => {
+
+      if (err || !items) return errorHandler(items, next, err)
+      
+      return res.json({
+        items: items
+      })
+
+    })
+
+}
 
 //==========
 //	get Producto x Id
@@ -83,7 +106,7 @@ function listar(req, res, next) {
 
 const imagen = (req, res) =>{
 
-  console.log('req.docProducto:',req.docProducto);
+  // console.log('req.docProducto:',req.docProducto);
 
   res.set('Content-Type', req.docProducto.imagen.contentType);
   res.set('xxxxx', 'aaaaabb');
@@ -189,6 +212,7 @@ module.exports ={
   guardar,
   borrar,
   update,
-  imagen
+  imagen,
+  getxCategoria
 }
 

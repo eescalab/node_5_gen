@@ -10,7 +10,7 @@ const {
 
 const router = express.Router();
 
-router.all('*',isAuth)
+// router.all('*',isAuth)
 
 //Rutas
 router.post('/carro', addCarro);

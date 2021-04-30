@@ -7,7 +7,8 @@ const {
   borrar, 
   update,
   productoById ,
-  imagen
+  imagen,
+  getxCategoria
 } = require('../../controller/producto_controller');
 
 const { isAuth,isAdmin } = require('../../middleware/auth');
@@ -22,6 +23,7 @@ router.param('productoId', productoById);
 //Rutas
 router.get('/producto', listar);
 router.get('/producto/:productoId', getxId);
+router.get('/producto/categoria/:categoria_nombre', getxCategoria);
 router.get('/producto/imagen/:productoId', imagen);
 router.post('/producto',isAuth,isAdmin, guardar);
 router.delete('/producto/:productoId',isAuth,isAdmin, borrar); 

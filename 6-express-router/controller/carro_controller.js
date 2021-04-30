@@ -11,19 +11,23 @@ const addCarro = async (req, res, next) => {
 
   try {
     docProducto = await ModelProducto.findById(productId).exec()
-    console.log(docProducto);
-
+    
     if(!docProducto){
       err =  new Error('No Existe')
       err.statusCode = 404;
       throw(err);
     }
-
+    
     docUsuario = await ModelUsuario.findById(usuarioId).exec();
-  
-    docUsuario = await docUsuario.addCarro(docProducto);
 
-    res.json(docUsuario)
+    
+    
+    //TODO borrar
+    docUsuario = await docUsuario.addCarro(docProducto);
+   
+    res.json(
+      docUsuario.cart
+    )
 
 
   } catch (error) {
@@ -44,14 +48,16 @@ const addCarro = async (req, res, next) => {
 const listarCarro = (req, res)=>{
 
   console.log('listarCarro');
-  
-  ModelUsuario.findById(req.params.id).
-    populate('cart.items.productId','-imagen').exec( (err, items) => {
+  //TODO borrar
+  ModelUsuario.findById(req.params.id, 'cart').
+    populate('cart.items.productId','-imagen').exec( (err, data) => {
     if(err){
       return res.json(err);
     }
 
-    return res.json(items)
+    return res.json(
+      data.cart
+    )
   });
 
   //callbaks -> 

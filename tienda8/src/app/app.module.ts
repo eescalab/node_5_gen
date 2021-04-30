@@ -11,6 +11,8 @@ import { TiendaComponent } from './modules/tienda/tienda/tienda.component';
 
 
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './modules/login/login.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,12 +23,13 @@ import { HttpClientModule } from '@angular/common/http';
     MenuComponent,
     CarruselComponent,
     NavegacionComponent,
-    TiendaComponent
+    TiendaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
+    FormsModule, //-->Formularios
     HttpClientModule
   ],
   providers: [],

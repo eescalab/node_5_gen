@@ -86,6 +86,17 @@ schemaUsuario.methods.clearCarrito = function(){
 
 }
 
+//TODO borrar
+schemaUsuario.virtual('cart.unidades').get(function () {
+
+  let unidades = this.cart.items.reduce((total, item) => {
+    return total + item.cantidad;
+  }, 0)
+
+  return unidades;
+
+});
+schemaUsuario.set('toJSON', { virtuals: true });
 
 const model = mongoose.model('modelUsuario', schemaUsuario);
 

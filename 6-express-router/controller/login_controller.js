@@ -53,10 +53,13 @@ function login(req,res, next) {
     let user = docUsuario.toObject();
     delete user.password;
     delete user.cart;
-
+    
     return res.json({
-      usuarioId: docUsuario._id,
-      role: docUsuario.role,
+      usuario : {
+        usuarioId: user._id,
+        nombre: user.nombre,
+        role: user.role,
+      },
       token: token
     });
 
@@ -87,11 +90,31 @@ function signup (req, res, next) {
   modelusuario.save( (err, docUsuario) => {
     if( err || !docUsuario  ) return errorHandler(docUsuario, next, err)
 
+    //TODO Borrar
+    let payload = {
+      usuarioId: docUsuario._id,
+      role: docUsuario.role
+    }
 
-        return res.json({
-          data: docUsuario
-        });
-  })
+    let token = jwt.sign(
+      payload,
+      process.env.TOKEN_KEY,
+      { expiresIn: process.env.CADUCIDAD_TOKEN, }
+    )
+    
+    return res.json({
+      usuario: {
+        usuarioId: docUsuario._id,
+        nombre: docUsuario.nombre,
+        role: docUsuario.role,
+      },
+      token: token
+    });
+
+    // return res.json({
+    //   data: docUsuario
+    // });
+})
   
 
 }

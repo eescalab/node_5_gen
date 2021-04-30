@@ -23,4 +23,12 @@ constructor(
   }
 
 
+  //////////////Productos ///////////////////
+
+  public getProductosXCategoria(categoria_nombre){
+
+    return this.http.get(this.url + "/producto/categoria/" + categoria_nombre);
+
+  }
+
 }
