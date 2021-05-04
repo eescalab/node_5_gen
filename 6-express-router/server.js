@@ -25,6 +25,7 @@ if(process.env.NODE_ENV === 'desarrollo' ){
 
 ///////EXPRESS
 const app = express();
+app.use( express.json() )
 
 
 
@@ -32,13 +33,15 @@ const app = express();
 //-Definir public static
 app.use(express.static('public'));
 
-app.get('/', function (req, res) {
-  res.sendFile("/public/index.html");
+
+app.get('/app/*', function (req, res) {
+  res.sendFile(__dirname+"/public/index.html");
 });
 
 
+
+
 //-Middelware req.body.xxxxx
-app.use( express.json() )
 
 //-Middelware - file upload
 app.use(fileUpload({
