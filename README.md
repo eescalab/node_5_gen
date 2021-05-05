@@ -2,7 +2,7 @@
 
 Si descargan el proyecto angular -> webtienda
 
->cd webtienda
+>cd webtienda  
  >npm install 
  
 para instalar todos los paquetes 
