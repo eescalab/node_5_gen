@@ -1,0 +1,35 @@
+
+
+
+  <div class="container p-3">
+    <div class="row" *ngFor="let item of listCart">
+      <div class="col border-bottom">
+        <img src="{{url}}/api/v1/producto/imagen/{{item.productId._id}}" width="100" height="120"
+          alt="Computer Hope">
+          
+      </div>
+      <div class="col border-bottom">
+        <div class="row row-cols-1" style="font-size: 10px;">
+          <div class="col">{{item.productId.categoria_nombre}}</div>
+          <div class="col">{{item.productId.producto_nombre}}</div>
+          <div class="col">Precio: {{item.productId.precio}}</div>
+          <div class="col">Cantidad: {{item.cantidad}}</div>
+          <div class="col">Total : {{item.total}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-3 d-flex justify-content-end">
+      
+      <ng-container *ngIf="listCart?.length">
+    
+        <button type="button" (click)="generarOrden()" class="btn btn-primary">Generar Orden</button>
+    
+      </ng-container>
+    
+    </div>
+    
+  </div>
+
+ 
+

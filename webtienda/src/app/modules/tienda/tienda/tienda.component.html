@@ -1,0 +1,28 @@
+<div class="container p-3 ">
+
+  <div class="row row-cols-3">
+    <div class="col mb-4" *ngFor="let item of lmProducto">
+      <div class="card h-100" style="width: 17rem;">
+        <div>
+          <img src="{{url}}/api/v1/producto/imagen/{{item._id}}" width="250" height="270"
+            alt="Computer Hope">
+        </div>
+        <div class="card-body" style="height: 50%; ">
+          <h5 class="card-title">{{item.producto_nombre}}</h5>
+          <p class="card-text">{{item.descripcion}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Precio {{item.precio}}</li>
+          <li class="list-group-item">Stock {{item.stock}}</li>
+        </ul>
+        <div class="card-body" style="height: 20%; " *ngIf="loginService.isLogged()">
+
+          <a (click)="addCarrito(item._id)" class="btn btn-primary">Añadir Carro</a>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,7 @@
+<h1 class="my-4">Productos</h1>
+
+<div class="list-group" *ngFor="let item of lcategorias">
+  
+  <a [routerLink]="['/app/tienda', item.categoria_nombre ]" class="list-group-item">{{item.categoria_nombre}}</a>
+
+</div>

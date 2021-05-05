@@ -1,0 +1,79 @@
+<div class="d-flex vh-100">
+  <div class="d-flex w-100 justify-content-center align-self-center">
+    <div class="card p-4" style="width: 25rem; height: 650px;">
+      <div class="container ">
+
+
+
+        <form class="form-horizontal" autocomplete="off" #myForm="ngForm"  (ngSubmit)="submit(myForm)" novalidate>
+
+          <img class="card-img-top rounded mx-auto d-block" src="./assets/shop2.jpg"
+            style="width: 243px; height: 120px;">
+          <hr>
+          <p class="h5 mb-4 text-center">Tienda On Line</p>
+
+          <!-- body -->
+
+          <div class="form-group row">
+            <label class="col-4 col-form-label">Nombre</label>
+            <div class="col-8">
+
+              <input type="text" autofocus class="form-control" autocomplete="off" name="nombre" 
+                #nombre="ngModel" required  ngModel [ngClass]="{ 'is-invalid': nombre.errors }" >
+
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-4 col-form-label">Usuario</label>
+            <div class="col-8">
+
+              <input type="text" autofocus class="form-control" autocomplete="off" style="text-transform: lowercase;"  name="email" 
+                #email="ngModel" required  ngModel [ngClass]="{ 'is-invalid': email.errors }" >
+
+            </div>
+          </div>
+
+          <div class="form-group row ">
+            <label class="col-4 col-form-label">Contraseña
+
+            </label>
+            <div class="col-8">
+              <input type="password" class="form-control" autocomplete="off" name="password" 
+                #password="ngModel"   ngModel [ngClass]="{ 'is-invalid': password.errors }" required minlength="6"
+>
+              <div *ngIf="password.errors?.pattern" class="invalid-feedback">
+                debe tener numeros y caracteres minusculas y mayusculas y un caracter @$.!%*#?&
+              </div>
+            </div>
+
+          </div>
+
+
+          <!-- Sign in button -->
+
+
+          <button type="submit" [disabled]="!myForm.valid"
+            class="btn btn-primary btn-block text-white">Registrarse</button>
+          <br>
+          <ul >
+            <li style="color: red;"  *ngFor="let item of dataerr">{{item.msg}}</li>
+          </ul>
+
+
+          <hr>
+          <!-- Register -->
+
+          <div class="text-center">
+            <p>®Todos los derechos reservados v1.0.0</p>
+            <br>
+          </div>
+
+        </form>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

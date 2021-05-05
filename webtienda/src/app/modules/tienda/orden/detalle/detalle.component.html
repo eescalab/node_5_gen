@@ -1,0 +1,21 @@
+<div class="container p-3">
+
+
+
+  <div class="row" *ngFor="let item of orden.productos">
+    
+    
+    <div class="col border-bottom">
+      <div class="row row-cols-1" style="font-size: 12px;">
+        <div class="col">Unidades: {{item.cantidad}} </div>
+        <div class="col">Producto: {{item.producto.producto_nombre}} </div>
+        <div class="col">Precio : {{item.producto.precio}}</div>
+      </div>
+    </div>
+
+
+  </div>
+
+  
+
+</div>
