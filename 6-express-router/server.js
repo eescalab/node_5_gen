@@ -39,6 +39,8 @@ app.get('/app/*', function (req, res) {
 });
 
 
+//http://localhost:8080/api/v1/categorias  --> end point - > routes
+
 
 
 //-Middelware req.body.xxxxx

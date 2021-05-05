@@ -10,6 +10,7 @@ const isAuth = (req, res, next) =>{
   jwt.verify(token, process.env.TOKEN_KEY, (err, decoded) =>{
     if(err){
       err.statusCode = 401;
+    
       next(err);
     }
 
@@ -45,7 +46,6 @@ const renewToken = async (req, res = response) => {
   
   const uid = req.usuario.uid;
   let {iat, exp,...payload} = req.usuario;
-
 
 
   let token = jwt.sign(
